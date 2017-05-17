@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 
 const Artists = (props) => {
 
-    // console.log("THIS IS PROPS", props);
-
     return (
         <div>
             <h3>Artists</h3>

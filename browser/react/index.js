@@ -12,11 +12,11 @@ import { Router, Route, hashHistory, browserHistory, IndexRedirect } from 'react
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
-      <IndexRedirect to="/albums" />
-      <Route path="/albums" component={Albums} />
-      <Route path="/albums/:albumId" component={Album} />
-      <Route path="/artists" component={Artists} />
-      <Route path="/artists/:artistId" component={Artist} >
+      <IndexRedirect to="/albums" /> {/*could also do: <IndexRoute component={Album} /> , says "when you're on index, render Album" */}
+      <Route path="albums" component={Albums} />
+      <Route path="albums/:albumId" component={Album} />
+      <Route path="artists" component={Artists} />
+      <Route path="artists/:artistId" component={Artist} >
         <Route path="albums" component={Albums} />
         <Route path="songs" component={Songs} />
         <Route path='*' component={NotFound} />

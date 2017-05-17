@@ -30,7 +30,6 @@ export default class Artist extends Component {
     }
 
     render() {
-        console.log('in Artist.js, this is this.props:', this.props);
         const artistId = this.props.routeParams.artistId;
         const selectedArtist = this.props.selectedArtist;
         const children = this.props.children;

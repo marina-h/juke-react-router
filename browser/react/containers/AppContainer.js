@@ -103,7 +103,7 @@ export default class AppContainer extends Component {
     this.setState({ progress: progress });
   }
 
-  selectAlbum(albumId) {
+  selectAlbum(albumId) {                //selectAlbum's 'this' is bound to the state of AppContainer, so it'll always be going off of that state
     axios.get(`/api/albums/${albumId}`)
       .then(res => res.data)
       .then(album => this.setState({
@@ -113,7 +113,7 @@ export default class AppContainer extends Component {
 
   selectArtist(artistId) {
     //request to get the artist's name
-    axios.get(`/api/artists/${artistId}`)
+    axios.get(`/api/artists/${artistId}`) //could have used Promise.all to do all 3 of these axios requests at once
       .then(res => res.data)
       .then(artist => this.setState({
         selectedArtist: artist
@@ -151,20 +151,21 @@ export default class AppContainer extends Component {
         {/*Picture Frame*/}
         <div className="col-xs-10">
           {
-            this.props.children ?
-              React.cloneElement(this.props.children,
+            this.props.children ? //if there are any (direct) children of this (AppContainer), put all of AppContainer's props into it
+              React.cloneElement(this.props.children, //could also do: (this.props.children && React.cloneElement(this.props.children, Object.assign({}, this.state, {toggle: this.toggleOne}));
                 {
-                  album: this.state.selectedAlbum,
                   currentSong: this.state.currentSong,
                   currentSongList: this.state.currentSongList,
                   isPlaying: this.state.isPlaying,
                   toggleOne: this.toggleOne,
                   toggle: this.toggle,
+
                   artists: this.state.artists,
                   selectedArtist: this.state.selectedArtist,
                   selectArtist: this.selectArtist,
 
                   albums: this.state.albums,
+                  album: this.state.selectedAlbum,
                   selectAlbum: this.selectAlbum
                 })
               : null
