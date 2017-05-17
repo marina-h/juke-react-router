@@ -117,6 +117,9 @@ export default class AppContainer extends Component {
       .then(res => res.data)
       .then(artist => this.setState({
         selectedArtist: artist
+      }))
+      .catch(noArtist => this.setState({
+        selectedArtist: null
       }));
     //request to get the artist's albums
     axios.get(`/api/artists/${artistId}/albums`)

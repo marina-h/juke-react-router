@@ -43,15 +43,19 @@ export default class Artist extends Component {
           toggle: this.props.toggle
         };
 
-        return (
-          <div>
+        const divToShow = (<div>
             <h3>{ selectedArtist.name }</h3>
-            <ul className="nav nav-tabs">
+              <ul className="nav nav-tabs">
               <li><Link to={`/artists/${artistId}/albums`}>ALBUMS</Link></li>
               <li><Link to={`/artists/${artistId}/songs`}>SONGS</Link></li>
             </ul>
             { children && React.cloneElement(children, propsToPassToChildren) }
-          </div>
+            </div>)
+
+        return (
+
+           selectedArtist ? divToShow : "Not found!" 
+
         )
     }
 }
